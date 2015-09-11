@@ -1,0 +1,10 @@
+@(scores: List[Score])
+
+@main("XIONNet") {
+    <h1>@scores.length score(s)</h1>
+    <ul>
+    @for(score <- scores) {
+        <li>@score.scoreValue</li>
+    }
+    </ul>
+}
