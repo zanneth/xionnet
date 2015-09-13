@@ -4,7 +4,7 @@
     <h1>@scores.length score(s)</h1>
     <ul>
     @for(score <- scores) {
-        <li>@score.scoreValue</li>
+        <li>@score.scoreValue (@score.playerName) (@score.playerUser.name)</li>
     }
     </ul>
 }

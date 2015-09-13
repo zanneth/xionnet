@@ -5,15 +5,12 @@ import play.*;
 import play.mvc.*;
 import views.html.*;
 import models.Score;
+import models.PlayerUser;
 
 public class Application extends Controller {
     public Result index()
     {
-        Score s = new Score();
-        s.scoreValue = 1337;
-        s.save();
-        
-        List<Score> scores = Score.find.findList();
+        List<Score> scores = Score.find.fetch("playerUser").findList();
         return ok(index.render(scores));
     }
 }
