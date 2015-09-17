@@ -2,13 +2,14 @@ package controllers;
 
 import java.util.*;
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 import views.html.*;
 import models.Score;
 import models.PlayerUser;
 import util.RequestUtil;
 
-public class APIController extends Controller {
+public class UserController extends Controller {
     public Result createUser()
     {
         Result result = null;
@@ -38,5 +39,11 @@ public class APIController extends Controller {
         }
         
         return result;
+    }
+    
+    public Result getUsers()
+    {
+        List<PlayerUser> users = PlayerUser.find.findList();
+        return ok(Json.toJson(users));
     }
 }

@@ -5,8 +5,7 @@ import java.util.*;
 import play.*;
 import play.mvc.*;
 import views.html.*;
-import models.Score;
-import models.PlayerUser;
+import models.*;
 
 public class Application extends Controller {
     public Result index()
@@ -15,8 +14,8 @@ public class Application extends Controller {
         
         boolean adminExists = (PlayerUser.getAdministratorUser() != null);
         if (adminExists) {
-            List<Score> scores = Score.find.fetch("playerUser").findList();
-            result = ok(index.render(scores));
+            List<Game> games = Game.find.findList();
+            result = ok(index.render(games));
         } else {
             result = ok(createadmin.render());
         }

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.*;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.format.*;
 import play.data.validation.*;
 
@@ -20,9 +21,11 @@ public class PlayerUser extends Model {
     public String name;
     
     /** Password hash */
+    @JsonIgnore
     public String passwordHash;
     
     /** Password salt */
+    @JsonIgnore
     public String passwordSalt;
     
     /** Whether the user is allowed to verify highscores */

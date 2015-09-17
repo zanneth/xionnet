@@ -27,4 +27,10 @@ public class Game extends Model {
     
     /** Finder for Game class */
     public static Finder<Long, Game> find = new Finder<Long, Game>(Game.class);
+    
+    /** Constructor */
+    public Game(String name)
+    {
+        this.name = name;
+    }
 }
