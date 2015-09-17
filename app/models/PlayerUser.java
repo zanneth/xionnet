@@ -28,6 +28,10 @@ public class PlayerUser extends Model {
     /** Whether the user is allowed to verify highscores */
     public boolean canVerifyScores = false;
     
+    /** Whether the user is an administrator (able to create new users and edit
+        data). */
+    public boolean isAdministrator = false;
+    
     /** Finder for PlayerUser class */
     public static Finder<Long, PlayerUser> find = new Finder<Long, PlayerUser>(PlayerUser.class);
     
@@ -41,5 +45,12 @@ public class PlayerUser extends Model {
         
         this.passwordHash = passwdHash;
         this.passwordSalt = salt;
+    }
+    
+    /** Returns the administrator account already exists in the
+        persistence store. Otherwise null. */
+    public static PlayerUser getAdministratorUser()
+    {
+        return PlayerUser.find.where().eq("isAdministrator", true).findUnique();
     }
 }

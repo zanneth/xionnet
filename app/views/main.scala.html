@@ -1,13 +1,27 @@
-@(title: String)(content: Html)
+@(title: String, stylesheets: Seq[String] = Seq[String](), scripts: Seq[String] = Seq[String]())(content: Html)
 
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
-        <title>@title</title>
+        <title>XIONNet - @title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+        
+        @for(stylesheet <- stylesheets) {
+            @defining("stylesheets/" + stylesheet) { stylesheetPath =>
+                <link rel="stylesheet" media="screen" href="@routes.Assets.versioned(stylesheetPath)">
+            }
+        }
+        
+        <!-- JQuery -->
+        <script src="@routes.Assets.versioned("javascripts/jquery-2.1.4.min.js")"></script>
+        
+        @for(script <- scripts) {
+            @defining("javascripts/" + script) { scriptPath =>
+                <script src="@routes.Assets.versioned(scriptPath)" type="text/javascript"></script>
+            }
+        }
     </head>
     <body>
         @content

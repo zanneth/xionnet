@@ -1,0 +1,15 @@
+@main("Create Administrator", Seq("createadmin.css"), Seq("createuser.js")) {
+    @header("Create Administrator")
+    
+    <div id="form-container">
+        <h1>Admin User</h1>
+        <div class="error" style="display:none"></div>
+        <form id="create-user">
+            <input type="text" name="username" placeholder="username" /><br />
+            <input type="password" name="password1" placeholder="password" /><br />
+            <input type="password" name="password2" placeholder="password (again)" /><br />
+            
+            <input type="submit" name="submit" />
+        </form>
+    </div>
+}
