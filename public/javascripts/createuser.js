@@ -17,48 +17,18 @@ function CreateUserForm(formElm)
     }
 }
 
-function submitCreateUser(form, completion)
-{
-    $.ajax({
-        type: "POST",
-        url: "/api/createuser",
-        data: {
-            administrator: true,
-            username: form.username,
-            password: form.password
-        }
-    }).done(function(data, textStatus, jqXHR) {
-        completion(null);
-    }).fail(function(data, textStatus, jqXHR) {
-        completion(data);
-    });
-}
-
 function formSubmitHandler(event)
 {
     var formElm = event.target;
     var form = new CreateUserForm(formElm);
     
-    if (form.isValid) {
-        // hide error message if one is visible
-        var errorElm = $(".error");
-        errorElm.hide();
-        
-        submitCreateUser(form, function(error) {
-            if (error != null) {
-                window.location.href = "/index";
-            } else {
-                errorElm.text(error);
-                errorElm.show();
-            }
-        });
-    } else {
+    if (!form.isValid) {
         var errorElm = $(".error");
         errorElm.text("Invalid username/password.");
         errorElm.show();
     }
     
-    return false;
+    return form.isValid;
 }
 
 $(document).ready(function()

@@ -4,10 +4,13 @@
     <div id="form-container">
         <h1>Admin User</h1>
         <div class="error" style="display:none"></div>
-        <form id="create-user">
+        
+        <form id="create-user" method="POST" action="@routes.UserController.createUser()">
             <input type="text" name="username" placeholder="username" /><br />
             <input type="password" name="password1" placeholder="password" /><br />
             <input type="password" name="password2" placeholder="password (again)" /><br />
+            
+            <input type="hidden" name="administrator" value="1" />
             
             <input type="submit" name="submit" />
         </form>

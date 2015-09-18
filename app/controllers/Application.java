@@ -17,7 +17,7 @@ public class Application extends Controller {
             List<Game> games = Game.find.findList();
             result = ok(index.render(games));
         } else {
-            result = ok(createadmin.render());
+            result = redirect("/users/createadmin");
         }
         
         return result;

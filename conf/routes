@@ -6,6 +6,9 @@
 GET     /                           controllers.Application.index()
 GET     /index                      controllers.Application.index()
 
+# Views
+GET     /users/createadmin          controllers.UserController.createAdminView()
+
 # API
 POST    /api/createuser             controllers.UserController.createUser()
 
