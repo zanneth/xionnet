@@ -1,0 +1,53 @@
+#browser {
+    flex: 1 1 auto;
+    
+    display: flex;
+    flex-flow: row;
+}
+
+#leading-panel {
+    flex: 0 0 auto;
+    width: 300px;
+    
+    display: flex;
+    flex-flow: column;
+    
+    background-color: white;
+    color: black;
+    
+    border-right: 1px solid #ccc;
+}
+
+#games-action-panel {
+    flex: 0 0 auto;
+    
+    background-color: #bbb;
+    padding: 10px;
+}
+
+#games-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+#games-list table {
+    width: 100%;
+}
+
+#games-list tr {
+    width: 100%;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#games-list td {
+    padding: 15px;
+}
+
+#inspector {
+    flex: 1 1 auto;
+    
+    background-color: white;
+    color: black;
+}

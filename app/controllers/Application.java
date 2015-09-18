@@ -14,8 +14,7 @@ public class Application extends Controller {
         
         boolean adminExists = (PlayerUser.getAdministratorUser() != null);
         if (adminExists) {
-            List<Game> games = Game.find.findList();
-            result = ok(index.render(games));
+            result = ok(index.render());
         } else {
             result = redirect("/users/createadmin");
         }

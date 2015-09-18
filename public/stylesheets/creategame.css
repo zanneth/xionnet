@@ -1,0 +1,13 @@
+#create-game-container {
+    padding: 20px;
+}
+
+#create-game-container > h1 {
+    margin-bottom: 20px;
+    font-size: 14pt;
+}
+
+#create-game-form > input[type="text"] {
+    height: 2em;
+    margin-bottom: 20px;
+}

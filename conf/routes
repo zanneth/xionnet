@@ -8,9 +8,11 @@ GET     /index                      controllers.Application.index()
 
 # Views
 GET     /users/createadmin          controllers.UserController.createAdminView()
+GET     /games/creategame           controllers.GameController.createGameView()
 
 # API
 POST    /api/createuser             controllers.UserController.createUser()
+POST    /api/creategame             controllers.GameController.createGame()
 
 GET     /api/users                  controllers.UserController.getUsers()
 GET     /api/games                  controllers.GameController.getGames()

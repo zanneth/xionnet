@@ -1,20 +1,4 @@
-@(games: List[Game])
-
 @main("XIONNet") {
     @header("XIONNet")
-    
-    <div id="browser">
-        <div id="games-list">
-            <table>
-                @for(game <- games) {
-                    <tr><td class="noselect">
-                        @game.name
-                    </td></tr>
-                }
-            </table>
-        </div>
-        <div id="inspector">
-            inspector
-        </div>
-    </div>
+    @browser()
 }
