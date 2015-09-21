@@ -33,4 +33,14 @@ public class Game extends Model {
     {
         this.name = name;
     }
+    
+    /** Adds a score to this game */
+    public void addScore(Score score)
+    {
+        if (this.scores == null) {
+            this.scores = new ArrayList<>();
+        }
+        
+        this.scores.add(score);
+    }
 }

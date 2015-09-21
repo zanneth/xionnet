@@ -1,0 +1,32 @@
+@(game: Game)
+
+<script src="@routes.Assets.versioned("javascripts/gamedetails.js")"></script>
+
+<div id="game-details">
+    <div id="game-header">
+        <h1>@game.name</h1>
+    </div>
+    
+    <div id="add-score-panel">
+        <input type="hidden" name="game-id" value="@game.id" />
+        <div class="button" id="add-score">Add Score</div>
+        <span class="error" style="display:none;">error</span>
+    </div>
+    
+    <table id="game-scores">
+        <thead><tr>
+            <th>Player</th>
+            <th>Score</th>
+            <th>Date</th>
+        </tr></thead>
+        <tbody>
+            @for(score <- game.scores) {
+                <tr>
+                    <td class="score-name-col">@score.playerName</td>
+                    <td class="score-value-col">@score.scoreValue</td>
+                    <td class="score-date-col">@score.dateCreated</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

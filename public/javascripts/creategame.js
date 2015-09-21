@@ -37,4 +37,7 @@ function createGameFormSubmit(event)
     return false;
 }
 
-$("#create-game-form").submit(createGameFormSubmit);
+$(document).ready(function()
+{
+    $("#create-game-form").submit(createGameFormSubmit);
+});

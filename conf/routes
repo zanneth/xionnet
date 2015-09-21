@@ -9,13 +9,16 @@ GET     /index                      controllers.Application.index()
 # Views
 GET     /users/createadmin          controllers.UserController.createAdminView()
 GET     /games/creategame           controllers.GameController.createGameView()
+GET     /games/:id                  controllers.GameController.gameView(id: Long)
 
 # API
 POST    /api/createuser             controllers.UserController.createUser()
 POST    /api/creategame             controllers.GameController.createGame()
+POST    /api/createscore            controllers.ScoreController.createScore()
 
 GET     /api/users                  controllers.UserController.getUsers()
 GET     /api/games                  controllers.GameController.getGames()
+GET     /api/games/:id              controllers.GameController.getGame(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

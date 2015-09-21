@@ -2,6 +2,7 @@ function Browser()
 {
     this.addGameButton = null;
     this.signalHandlers = {};
+    this.selectedGameID = 0;
     
     this.addSignalHandler("gameCreated", $.proxy(this.gameCreatedCallback, this));
 }
@@ -14,6 +15,7 @@ Browser.prototype.getInspectorElement = function()
 Browser.prototype.addGameButtonClicked = function(event)
 {
     var inspector = this.getInspectorElement();
+    this.setSelectedGameID(0);
     
     $.ajax({
         type: "GET",
@@ -23,6 +25,28 @@ Browser.prototype.addGameButtonClicked = function(event)
     }).fail(function(data, textStatus, jqXHR) {
         console.log("Error loading create game UI. " + data);
     });
+}
+
+Browser.prototype.gameCellClicked = function(event)
+{
+    var inspector = this.getInspectorElement();
+    var gameID = $(event.currentTarget).attr("game-id");
+    this.setSelectedGameID(gameID);
+    
+    $.ajax({
+        type: "GET",
+        url: "/games/" + gameID
+    }).done(function(data, textStatus, jqXHR) {
+        inspector.html(data);
+    }).fail(function(data, textStatus, jqXHR) {
+        console.log("Error loading game data. " + data);
+    });
+}
+
+Browser.prototype.setSelectedGameID = function(id)
+{
+    $("#games-list tr").removeClass("selected");
+    $("#games-list tr[game-id=" + id + "]").addClass("selected");
 }
 
 Browser.prototype.addSignalHandler = function(signal, callback)
@@ -62,10 +86,17 @@ Browser.prototype.reloadGamesList = function()
             var newCol = $("<td/>", {class: "noselect"});
             newCol.text(game.name);
             
-            var newRow = $("<tr/>");
+            var newRow = $("<tr/>", {
+                "game-id" : game.id
+            });
             newRow.append(newCol);
+            newRow.click(function(event) {
+                browser.gameCellClicked(event);
+            });
+            
             gamesListTable.append(newRow);
         }
+        
     }).fail(function(data, textStatus, jqXHR) {
         console.log("Failed to reload games list. " + textStatus);
     });

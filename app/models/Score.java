@@ -34,4 +34,10 @@ public class Score extends Model {
     
     /** Finder for Score class */
     public static Finder<Long, Score> find = new Finder<Long, Score>(Score.class);
+    
+    /** Formatted date string for date created timestamp */
+    public String getDateCreatedString()
+    {
+        return this.dateCreated.toString();
+    }
 }
