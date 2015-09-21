@@ -15,6 +15,7 @@ import play.data.validation.*;
 public class Score extends Model {
     /** Persistent ID */
     @Id
+    @GeneratedValue
     public Long id;
     
     /** Value of the score */

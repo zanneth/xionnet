@@ -16,6 +16,7 @@ import play.data.validation.*;
 public class Game extends Model {
     /** Persistent ID */
     @Id
+    @GeneratedValue
     public Long id;
     
     /** Name */

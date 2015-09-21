@@ -15,6 +15,7 @@ import util.CryptoUtil;
 public class PlayerUser extends Model {
     /** Persistent ID */
     @Id
+    @GeneratedValue
     public Long id;
     
     /** Name */
