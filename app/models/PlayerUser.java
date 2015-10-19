@@ -15,7 +15,7 @@ import util.CryptoUtil;
 public class PlayerUser extends Model {
     /** Persistent ID */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     
     /** Name */

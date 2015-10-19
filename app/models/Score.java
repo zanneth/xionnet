@@ -15,7 +15,7 @@ import play.data.validation.*;
 public class Score extends Model {
     /** Persistent ID */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     
     /** Value of the score */

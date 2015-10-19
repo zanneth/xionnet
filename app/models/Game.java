@@ -16,7 +16,7 @@ import play.data.validation.*;
 public class Game extends Model {
     /** Persistent ID */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     
     /** Name */
