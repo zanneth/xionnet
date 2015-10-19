@@ -1,10 +1,14 @@
 package controllers;
 
+import controllers.GameObserver;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.sql.Timestamp;
 import java.util.*;
 import play.*;
 import play.libs.Json;
+import play.libs.F.Function0;
+import play.libs.F.Promise;
+import play.libs.F.RedeemablePromise;
 import play.mvc.*;
 import views.html.*;
 import models.*;
@@ -63,5 +67,24 @@ public class GameController extends Controller {
         } else {
             return notFound("not found");
         }
+    }
+    
+    public Promise<Result> pollGame(Long id)
+    {
+        Promise<Result> promise = null;
+        
+        // make sure game exists first
+        Game game = Game.find.byId(id);
+        if (game != null) {
+            GameObserver observer = GameObserver.getSharedObserver();
+            Promise<Game> gamePromise = observer.createChangedGamePromise(id);
+            promise = gamePromise.map(
+                changedGame -> (Result)ok(Json.toJson(changedGame))
+            );
+        } else {
+            promise = Promise.pure(notFound("not found"));
+        }
+        
+        return promise;
     }
 }

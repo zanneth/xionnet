@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.GameObserver;
 import controllers.SessionController;
 import java.util.*;
 import play.*;
@@ -28,6 +29,10 @@ public class ScoreController extends Controller {
             game.save();
             
             result = created();
+            
+            // notify observers
+            GameObserver observer = GameObserver.getSharedObserver();
+            observer.notifyGameChanged(gameID);
         } else {
             result = badRequest();
         }
